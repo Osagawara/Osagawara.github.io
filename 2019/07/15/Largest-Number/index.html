@@ -2,21 +2,25 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Categories - Hexo</title>
+<title>Largest Number - Hexo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="keywords" content="Sort,LeetCode,日本,首相">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://osagawara.github.io/categories/index.html">
+    <meta name="description" content="题目给定一个非负整数的列表，将它们排序之后首尾相连得到一个整数，返回可得的最大整数 Example 1:Input: [10,2]Output: “210” Example 2:Input: [3,30,34,5,9]Output: “9534330”">
+<meta name="keywords" content="Sort,LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Largest Number">
+<meta property="og:url" content="https://osagawara.github.io/2019/07/15/Largest-Number/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目给定一个非负整数的列表，将它们排序之后首尾相连得到一个整数，返回可得的最大整数 Example 1:Input: [10,2]Output: “210” Example 2:Input: [3,30,34,5,9]Output: “9534330”">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://osagawara.github.io/images/og_image.png">
+<meta property="og:image" content="https://osagawara.github.io/thumbnails/leetcode.png">
+<meta property="og:updated_time" content="2019-07-15T09:17:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:image" content="https://osagawara.github.io/images/og_image.png">
+<meta name="twitter:title" content="Largest Number">
+<meta name="twitter:description" content="题目给定一个非负整数的列表，将它们排序之后首尾相连得到一个整数，返回可得的最大整数 Example 1:Input: [10,2]Output: “210” Example 2:Input: [3,30,34,5,9]Output: “9534330”">
+<meta name="twitter:image" content="https://osagawara.github.io/thumbnails/leetcode.png">
 
 
 
@@ -94,7 +98,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Hexo" height="28">
+                <img src="/images/logo.svg" alt="Largest Number" height="28">
             
             </a>
         </div>
@@ -106,7 +110,7 @@
                 
                 <a class="navbar-item" href="/archives">Archives</a>
                 
-                <a class="navbar-item is-active" href="/categories">Categories</a>
+                <a class="navbar-item" href="/categories">Categories</a>
                 
                 <a class="navbar-item" href="/tags">Tags</a>
                 
@@ -139,35 +143,123 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-<div class="card widget">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/thumbnails/leetcode.png" alt="Largest Number">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-15T08:59:09.000Z">2019-07-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/LeetCode/">LeetCode</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/LeetCode/Sort/">Sort</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 439 words)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Largest Number
+            
+        </h1>
+        <div class="content">
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个非负整数的列表，将它们排序之后首尾相连得到一个整数，返回可得的最大整数</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h3><p>Input: [10,2]<br>Output: “210”</p>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h3><p>Input: [3,30,34,5,9]<br>Output: “9534330”</p>
+<a id="more"></a>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>先将整数列表转化为字符串列表，再进行排序。</p>
+<p>一般情况，对于两个整数字符串a和b，如果将a排在前面会使结果更大，则a的字典序一定比b大，可以直接使用&gt;和&lt;来进行比较。</p>
+<p>特殊情况，a是b的前缀，则b的字典序一定比a大，但此时b不总是排在a的前面。对于<code>&#39;998&#39;</code>和<code>&#39;99899&#39;</code>，有<code>&#39;99899&#39; &gt; &#39;998&#39;</code>。但是对于<code>&#39;338&#39;和&#39;33833&#39;</code>，我们必须确保<code>&#39;338&#39; &gt; &#39;33833&#39;</code>，这与python3内置比较相反。因此我们需要自定义一个用于排序的比较函数。</p>
+<p>不妨设a是b的前缀，由于两者前面相同，则需要对a和b的除去前缀的部分进行比较，也即比较<code>a</code>和<code>b[len(a):]</code>。如果<code>b[len(a):] &gt; a</code>，则<code>b &gt; a</code>；如果<code>b[len(a):] &lt; a</code>，则<code>b &lt; a</code>。此外，有一种特殊情况，最后a或b可能为空串，说明a和b都是由相同的子串（不同数量）拼接而成，这时返回相等。最终自定义的比较函数如下。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">def cmp_str(a, b):</span><br><span class="line">    if a == &apos;&apos; or b == &apos;&apos;:</span><br><span class="line">        return 0</span><br><span class="line">        </span><br><span class="line">    la = len(a)</span><br><span class="line">    lb = len(b)</span><br><span class="line">    if la &lt;= lb and a == b[:la]:</span><br><span class="line">        return cmp_str(a, b[la:])</span><br><span class="line">        </span><br><span class="line">    if la &gt; lb and a[:lb] == b:</span><br><span class="line">        return cmp_str(a[lb:], b)</span><br><span class="line">        </span><br><span class="line">    if a &gt; b:</span><br><span class="line">        return 1</span><br><span class="line">    elif a == b:</span><br><span class="line">        return 0</span><br><span class="line">    else:</span><br><span class="line">        return -1</span><br></pre></td></tr></table></figure>
+
+<p>对于排序，<code>functools.cmp_to_key</code>可以将比较函数转化为key参数，输入到<code>sort()</code>中。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/LeetCode/">LeetCode</a>, <a class="has-link-grey -link" href="/tags/Sort/">Sort</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Categories
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/LeetCode/">
-            <span class="level-start">
-                <span class="level-item">LeetCode</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/LeetCode/Sort/">
-            <span class="level-start">
-                <span class="level-item">Sort</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li>
-            </ul>
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>Alipay</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="Alipay"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="Wechat"></div>
+</a>
+
+                
         </div>
     </div>
-</div></div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/14/hello-world/">
+                <span class="level-item">Hello World</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
                 
 
 
@@ -578,7 +670,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Hexo" height="28">
+                    <img src="/images/logo.svg" alt="Largest Number" height="28">
                 
                 </a>
                 <p class="is-size-7">
