@@ -2,7 +2,7 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Kategori: Database - Hexo</title>
+<title>Categoria: Database - Hexo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -126,7 +126,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Pencarian" href="javascript:;">
+                <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -142,7 +142,7 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/categories">Kategori</a></li>
+            <li><a href="/categories">Categorias</a></li>
             
             <li><a href="/categories/LeetCode/">LeetCode</a></li>
             
@@ -174,7 +174,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes membaca (Sekitar 640 kata)
+                    4 minutes read (About 642 words)
                 </span>
                 
                 
@@ -187,34 +187,17 @@
             
         </h1>
         <div class="content">
-            <p>这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数<code>max()</code>。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路</p>
-<h2 id="Department-Top-Three-Salaries"><a href="#Department-Top-Three-Salaries" class="headerlink" title="Department Top Three Salaries"></a>Department Top Three Salaries</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定如下一个关系<code>Employee</code>，求每个部门前三高的薪水和雇员，相等的薪水排在同一位。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| Id | Name  | Salary | DepartmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 85000  | 1            |</span><br><span class="line">| 2  | Henry | 80000  | 2            |</span><br><span class="line">| 3  | Sam   | 60000  | 2            |</span><br><span class="line">| 4  | Max   | 90000  | 1            |</span><br><span class="line">| 5  | Janet | 69000  | 1            |</span><br><span class="line">| 6  | Randy | 85000  | 1            |</span><br><span class="line">| 7  | Will  | 70000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br></pre></td></tr></table></figure>
-<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><p>第三高的薪水，意味着排在其前面的不同的薪水只有两个。给定两个<code>Employee</code>关系<code>e1</code>和<code>e2</code>，对于<code>e1</code>中的每个条目，我们只需统计<code>e2</code>中与其相同部门且薪水比它大的不同薪水的数目，该数目为2则<code>e1</code>的对应条目为所求。同时第二高和第一高的薪水，该数目分别为1和0。</p>
-<p>mysql语句如下</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select name, salary, departmentID</span><br><span class="line">from Employee as e1</span><br><span class="line">where 2 &gt;= (</span><br><span class="line">	select count( distinct e2.salary)</span><br><span class="line">	from Employee as e2</span><br><span class="line">	where e2.departmentID = e1.departmentID and</span><br><span class="line">		e2.salary &gt; e1.salary</span><br><span class="line">)</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
-
-<p>另一个题目是关于多个连续条目的问题。</p>
-<h2 id="Human-Traffic-of-Stadium"><a href="#Human-Traffic-of-Stadium" class="headerlink" title="Human Traffic of Stadium"></a>Human Traffic of Stadium</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>给定如下一个关系<code>Stadium</code>，求出那些连续三天及以上人数不低于100的条目。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   +------+------------+-----------+</span><br><span class="line">| id   | visit_date | people    |</span><br><span class="line">+------+------------+-----------+</span><br><span class="line">| 1    | 2017-01-01 | 10        |</span><br><span class="line">| 2    | 2017-01-02 | 109       |</span><br><span class="line">| 3    | 2017-01-03 | 150       |</span><br><span class="line">| 4    | 2017-01-04 | 99        |</span><br><span class="line">| 5    | 2017-01-05 | 145       |</span><br><span class="line">| 6    | 2017-01-06 | 1455      |</span><br><span class="line">| 7    | 2017-01-07 | 199       |</span><br><span class="line">| 8    | 2017-01-08 | 188       |</span><br><span class="line">+------+------------+-----------+</span><br></pre></td></tr></table></figure>
-
-<h3 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h3><p>由表中可知，日期和<code>id</code>都是连续的，我们只需找出<code>id</code>连续3个及以上的即可。连续三天及以上意味着条目满足下面三个条件之一：</p>
-<ol>
-<li>该条目和下个相邻条目和下下个相邻条目都是不少于100人</li>
-<li>该条目和上个相邻条目和下个相邻条目都是不少于100人</li>
-<li>该条目和上个相邻条目和上上个相邻条目都是不少于100人</li>
-</ol>
-<p>这些可以用id之间的差距来表示。<br>我们可以求出三个<code>Stadium</code>关系<code>t1</code>、 <code>t2</code>和<code>t3</code>的笛卡尔积，求出其中三个人数都不少于100，且<code>id</code>满足上述条件的条目，取出其中<code>t1</code>的属性，排序即可。</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   select distinct t1.* from stadium as t1, stadium as t2, stadium as t3</span><br><span class="line">where t1.people &gt;= 100 and t2.people &gt;= 100 and t3.people &gt;= 100</span><br><span class="line">and </span><br><span class="line">(</span><br><span class="line">   	(t1.id = t2.id - 1 and t1.id = t3.id - 2)</span><br><span class="line">   	or </span><br><span class="line">   	(t1.id = t2.id + 1 and t1.id = t3.id + 2)</span><br><span class="line">   	or </span><br><span class="line">   	(t1.id = t2.id - 1 and t1.id = t3.id + 1)</span><br><span class="line">)</span><br><span class="line">order by t1.id;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
+            <p>这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数<code>max()</code>。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路。</p>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/07/22/LeetCode-Database/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -265,7 +248,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Artikel
+                        Entradas
                     </p>
                     <p class="title has-text-weight-normal">
                         3
@@ -275,7 +258,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Kategori
+                        Categorias
                     </p>
                     <p class="title has-text-weight-normal">
                         3
@@ -285,7 +268,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tag
+                        Etiquetas
                     </p>
                     <p class="title has-text-weight-normal">
                         4
@@ -295,7 +278,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/osagawara" target="_blank">
-                IKUTI</a>
+                SEGUIR</a>
         </div>
         
         
@@ -338,7 +321,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Tautan
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -376,7 +359,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Kategori
+                Categorias
             </h3>
             <ul class="menu-list">
             <li>
@@ -413,7 +396,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Awan tag
+            Nube de etiquetas
         </h3>
         <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a>
     </div>
@@ -427,7 +410,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recientes
         </h3>
         
         <article class="media">
@@ -495,7 +478,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -519,7 +502,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -571,7 +554,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recientes
         </h3>
         
         <article class="media">
@@ -639,7 +622,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -663,7 +646,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -829,7 +812,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Kembali ke atas" href="javascript:;">
+<a id="back-to-top" title="Back to Top" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -865,7 +848,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu..">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -877,11 +860,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Artikel',
-                PAGES: 'Halaman',
-                CATEGORIES: 'Kategori',
-                TAGS: 'Tag',
-                UNTITLED: 'Tanpa Judul',
+                POSTS: 'Entradas',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categorias',
+                TAGS: 'Etiquetas',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
         };

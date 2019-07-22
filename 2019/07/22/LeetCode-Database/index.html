@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数max()。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路 Department Top Three Salaries题目给定如下一个关系Employee，求每个部门前三高的薪水和雇员，相等的薪水排在同一位。 12345678910">
+    <meta name="description" content="这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数max()。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路。">
 <meta name="keywords" content="LeetCode,Database,Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode Database">
 <meta property="og:url" content="https://osagawara.github.io/2019/07/22/LeetCode-Database/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数max()。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路 Department Top Three Salaries题目给定如下一个关系Employee，求每个部门前三高的薪水和雇员，相等的薪水排在同一位。 12345678910">
+<meta property="og:description" content="这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数max()。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://osagawara.github.io/thumbnails/leetcode.png">
-<meta property="og:updated_time" content="2019-07-22T06:53:10.000Z">
+<meta property="og:updated_time" content="2019-07-22T06:56:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode Database">
-<meta name="twitter:description" content="这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数max()。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路 Department Top Three Salaries题目给定如下一个关系Employee，求每个部门前三高的薪水和雇员，相等的薪水排在同一位。 12345678910">
+<meta name="twitter:description" content="这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数max()。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路。">
 <meta name="twitter:image" content="https://osagawara.github.io/thumbnails/leetcode.png">
 
 
@@ -131,7 +131,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Pencarian" href="javascript:;">
+                <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes membaca (Sekitar 640 kata)
+                    4 minutes read (About 642 words)
                 </span>
                 
                 
@@ -183,7 +183,8 @@
             
         </h1>
         <div class="content">
-            <p>这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数<code>max()</code>。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路</p>
+            <p>这次的两个题目涉及比较关系，mysql中求取某一属性的最大值，可以使用聚合函数<code>max()</code>。如果求第二大值，可以求取小于最大值的最大值。如果是第三大、第四大甚至第五大值之时，就不能像这样循环地定义。下面这道题给出了一个不同的思路。</p>
+<a id="more"></a>
 <h2 id="Department-Top-Three-Salaries"><a href="#Department-Top-Three-Salaries" class="headerlink" title="Department Top Three Salaries"></a>Department Top Three Salaries</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定如下一个关系<code>Employee</code>，求每个部门前三高的薪水和雇员，相等的薪水排在同一位。</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| Id | Name  | Salary | DepartmentId |</span><br><span class="line">+----+-------+--------+--------------+</span><br><span class="line">| 1  | Joe   | 85000  | 1            |</span><br><span class="line">| 2  | Henry | 80000  | 2            |</span><br><span class="line">| 3  | Sam   | 60000  | 2            |</span><br><span class="line">| 4  | Max   | 90000  | 1            |</span><br><span class="line">| 5  | Janet | 69000  | 1            |</span><br><span class="line">| 6  | Randy | 85000  | 1            |</span><br><span class="line">| 7  | Will  | 70000  | 1            |</span><br><span class="line">+----+-------+--------+--------------+</span><br></pre></td></tr></table></figure>
 <h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><p>第三高的薪水，意味着排在其前面的不同的薪水只有两个。给定两个<code>Employee</code>关系<code>e1</code>和<code>e2</code>，对于<code>e1</code>中的每个条目，我们只需统计<code>e2</code>中与其相同部门且薪水比它大的不同薪水的数目，该数目为2则<code>e1</code>的对应条目为所求。同时第二高和第一高的薪水，该数目分别为1和0。</p>
@@ -229,7 +230,7 @@
 
 <div class="card">
     <div class="card-content">
-        <h3 class="menu-label has-text-centered">Suka dengan artikel ini? Bantu penulis dengan donasi melalui</h3>
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
         <div class="buttons is-centered">
             
                 
@@ -311,7 +312,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Artikel
+                        Entradas
                     </p>
                     <p class="title has-text-weight-normal">
                         3
@@ -321,7 +322,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Kategori
+                        Categorias
                     </p>
                     <p class="title has-text-weight-normal">
                         3
@@ -331,7 +332,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tag
+                        Etiquetas
                     </p>
                     <p class="title has-text-weight-normal">
                         4
@@ -341,7 +342,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/osagawara" target="_blank">
-                IKUTI</a>
+                SEGUIR</a>
         </div>
         
         
@@ -384,7 +385,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Tautan
+            Links
         </h3>
         <ul class="menu-list">
         
@@ -422,7 +423,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Kategori
+                Categorias
             </h3>
             <ul class="menu-list">
             <li>
@@ -459,7 +460,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Awan tag
+            Nube de etiquetas
         </h3>
         <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a>
     </div>
@@ -473,7 +474,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recientes
         </h3>
         
         <article class="media">
@@ -541,7 +542,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -565,7 +566,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -617,7 +618,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Recientes
         </h3>
         
         <article class="media">
@@ -685,7 +686,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archivos
         </h3>
         <ul class="menu-list">
         
@@ -709,7 +710,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Etiquetas
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -875,7 +876,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Kembali ke atas" href="javascript:;">
+<a id="back-to-top" title="Back to Top" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -911,7 +912,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu..">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -923,11 +924,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Artikel',
-                PAGES: 'Halaman',
-                CATEGORIES: 'Kategori',
-                TAGS: 'Tag',
-                UNTITLED: 'Tanpa Judul',
+                POSTS: 'Entradas',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categorias',
+                TAGS: 'Etiquetas',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
         };
